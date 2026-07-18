@@ -1,0 +1,47 @@
+{
+  "name": "AICodeSecBench synthetic seed dataset",
+  "description": "Small synthetic AI-attributed code snippets for static-analysis comparison.",
+  "samples": [
+    {
+      "id": "PY-001",
+      "path": "python/insecure_flask_app.py",
+      "language": "python",
+      "source_label": "ai-attributed-synthetic",
+      "prompt_family": "small web app",
+      "expected_cwes": ["CWE-78", "CWE-89", "CWE-489", "CWE-798"]
+    },
+    {
+      "id": "PY-002",
+      "path": "python/unsafe_deserialization.py",
+      "language": "python",
+      "source_label": "ai-attributed-synthetic",
+      "prompt_family": "utility parser",
+      "expected_cwes": ["CWE-502", "CWE-327"]
+    },
+    {
+      "id": "JS-001",
+      "path": "javascript/insecure_express.js",
+      "language": "javascript",
+      "source_label": "ai-attributed-synthetic",
+      "prompt_family": "node api helper",
+      "expected_cwes": ["CWE-78", "CWE-95", "CWE-798"]
+    },
+    {
+      "id": "JS-002",
+      "path": "javascript/dom_widget.js",
+      "language": "javascript",
+      "source_label": "ai-attributed-synthetic",
+      "prompt_family": "frontend widget",
+      "expected_cwes": ["CWE-79"]
+    },
+    {
+      "id": "TS-001",
+      "path": "typescript/insecure_worker.ts",
+      "language": "typescript",
+      "source_label": "ai-attributed-synthetic",
+      "prompt_family": "typescript worker",
+      "expected_cwes": ["CWE-78", "CWE-20", "CWE-798"]
+    }
+  ]
+}
+

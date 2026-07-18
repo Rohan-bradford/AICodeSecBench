@@ -1,0 +1,45 @@
+name: Static Analysis Tool Comparison
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: python,javascript-typescript
+      - uses: github/codeql-action/analyze@v4
+        with:
+          output: codeql-results
+          upload: false
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: codeql-results
+          path: codeql-results/
+
+  bandit-semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e ".[dev]" bandit semgrep
+      - run: python -m aicodesecbench.cli run --dataset dataset --out reports --with-bandit --with-semgrep
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-semgrep-reports
+          path: reports/
+
