@@ -130,6 +130,14 @@ This is a small educational reproduction of the analysis workflow, not a replace
 paper’s large-scale empirical dataset. Results from the synthetic seed dataset should not be
 generalized to all AI-generated code.
 
+## Verification
+
+```bash
+ruff check .
+pytest
+python -m aicodesecbench.cli run --dataset dataset --out reports
+```
+
 ## References
 
 - arXiv paper page:
@@ -146,4 +154,3 @@ generalized to all AI-generated code.
 ## License
 
 MIT
-
